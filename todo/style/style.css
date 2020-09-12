@@ -1,0 +1,51 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#TodoInput {
+    width: 300px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    transition: .2s all;
+    font-size: 20px;
+}
+#TodoInput:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px grey;
+}
+
+#TodoList {
+    padding: 10px 20px;
+    background-color: #efefef;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px lightgray;
+    width: 300px;
+    font-size: 18px;
+}
+#TodoList > li {
+    list-style-type: none;
+    padding: 10px 5px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: .2s all;
+    border-radius: inherit;
+    border-bottom: 1px solid lightgray;
+}
+#TodoList > li:hover {
+    background-color: #fafafa;
+    transform: scale(1.05);
+}

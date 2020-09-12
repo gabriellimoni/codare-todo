@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+    <title>Codare Levem Tech - 01</title>
+</head>
+<body>
+    <h1>Todo App</h1>
+
+    <div class="todo-container">
+        <input 
+            type="text" 
+            id="TodoInput" 
+            maxlength="50"
+            placeholder="Type your cool todo here..."
+            autofocus
+        >
+        
+        <ul id="TodoList">
+        </ul>
+    </div>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
