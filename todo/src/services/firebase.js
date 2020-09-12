@@ -35,27 +35,4 @@ export default class FirebaseService {
             .doc(String(todoId))
             .delete()
     }
-
-    async addTodo (todo) {
-        return await firebase.firestore()
-            .collection('todos')
-            .doc(String(todo.id))
-            .set(Object.assign({}, todo))
-    }
-
-    async getAllTodos () {
-        const getData =  await firebase.firestore()
-            .collection('todos')
-            .get()
-
-        const todosData = getData.docs.map(doc => doc.data())
-        return todosData
-    }
-
-    async removeTodoById (todoId) {
-        return await firebase.firestore()
-            .collection('todos')
-            .doc(String(todoId))
-            .delete()
-    }
 }
