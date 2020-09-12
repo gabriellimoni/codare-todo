@@ -25,6 +25,14 @@
         </ul>
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module">
+        const urlParams = new URLSearchParams(window.location.search)
+        const persistencyMode = urlParams.get('mode') || 'localstorage'
+
+        import Main from './index.js'
+        const main = new Main(persistencyMode)
+
+        main.run()
+    </script>
 </body>
 </html>
