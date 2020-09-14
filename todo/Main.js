@@ -1,7 +1,7 @@
 import FirebaseService from './src/services/firebase.js'
 import LocalStorageService from './src/services/localStorage.js'
-import TodoApp from './src/app.js'
-import InputHandler from './src/inputHandler.js'
+import TodoApp from './src/TodoApp.js'
+import InputHandler from './src/InputHandler.js'
 
 const availablesPersistencyTypes = [
     'localstorage',

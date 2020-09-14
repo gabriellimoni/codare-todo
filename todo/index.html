@@ -29,7 +29,7 @@
         const urlParams = new URLSearchParams(window.location.search)
         const persistencyMode = urlParams.get('mode') || 'localstorage'
 
-        import Main from './index.js'
+        import Main from './Main.js'
         const main = new Main(persistencyMode)
 
         main.run()
