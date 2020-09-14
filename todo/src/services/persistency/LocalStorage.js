@@ -8,6 +8,15 @@ export default class LocalStorageService {
         this._setAllTodos(allTodos)
     }
 
+    async updateTodo (todo) {
+        const allTodos = this._getAllTodosJSON()
+        
+        const updateIndex = allTodos.map(t => t.id).indexOf(todo.id)
+        allTodos.splice(updateIndex, 1, todo)
+
+        this._setAllTodos(allTodos)
+    }
+
     async getAllTodos () {
         const allTodos = this._getAllTodosJSON()
         return allTodos

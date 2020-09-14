@@ -20,6 +20,13 @@ export default class FirebaseService {
             .set(Object.assign({}, todo))
     }
 
+    async updateTodo (todo) {
+        return await firebase.firestore()
+            .collection('todos')
+            .doc(String(todo.id))
+            .update(Object.assign({}, todo))
+    }
+
     async getAllTodos () {
         const getData =  await firebase.firestore()
             .collection('todos')
