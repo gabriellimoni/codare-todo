@@ -1,5 +1,5 @@
-import FirebaseService from './src/services/firebase.js'
-import LocalStorageService from './src/services/localStorage.js'
+import FirebaseService from './src/services/persistency/Firebase.js'
+import LocalStorageService from './src/services/persistency/LocalStorage.js'
 import TodoApp from './src/TodoApp.js'
 import InputHandler from './src/InputHandler.js'
 
