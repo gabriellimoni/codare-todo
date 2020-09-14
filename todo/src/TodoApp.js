@@ -38,18 +38,61 @@ export default class TodoApp {
 
     _renderTodo (todo) {
         this._throwsIfNotTodoStructure(todo)
-
-        const todoElement = document.createElement('li')
-        todoElement.innerHTML = todo.name
-        todoElement.id = todo.id
-        todoElement.onclick = async () => await this._removeTodoById(todoElement.id)
-
-        this._listElement.appendChild(todoElement)
+        const todoListItemElement = this._createTodoListItemElement(todo)
+        this._listElement.appendChild(todoListItemElement)
     }
 
     _throwsIfNotTodoStructure (todo) {
         const isTodoStructure = todo instanceof TodoStructure
         if (!isTodoStructure) throw new Error('Object received is not a TodoStructure Object')
+    }
+
+    _createTodoListItemElement (todo) {
+        const todoListItemElement = this._getTodoListItemElement(todo)
+        const todoTextElement = this._getTodoTextElement(todo)
+        const todoExcludeElement = this._getTodoExcludeElement(todo)
+
+        todoListItemElement.appendChild(todoTextElement)
+        todoListItemElement.appendChild(todoExcludeElement)
+
+        return todoListItemElement
+    }
+
+    _getTodoListItemElement (todo) {
+        const todoListItemElement = document.createElement('li')
+        todoListItemElement.id = todo.id
+        todoListItemElement.onclick = (e) => {
+            e.stopPropagation()
+            this._setEditingTodo(todo.id)
+        }
+    
+        return todoListItemElement
+    }
+
+    _setEditingTodo (todoId) {
+        const editingTodo = this._allTodos.find(todo => todo.id == todoId)
+        if (!editingTodo) return
+        
+        const setEditingTodoEvent = new CustomEvent('setEditingTodoEvent', { detail: editingTodo })
+        document.dispatchEvent(setEditingTodoEvent)
+    }
+    
+    _getTodoTextElement (todo) {
+        const todoTextElement = document.createElement('span')
+        todoTextElement.innerText = todo.name
+    
+        return todoTextElement
+    }
+    
+    _getTodoExcludeElement (todo) {
+        const todoExcludeElement = document.createElement('button')
+        todoExcludeElement.innerText = 'X'
+        todoExcludeElement.onclick = async (e) => {
+            e.stopPropagation()
+            await this._removeTodoById(todo.id)
+        }
+    
+        return todoExcludeElement
     }
 
     async _removeTodoById (todoId) {
@@ -78,6 +121,17 @@ export default class TodoApp {
 
     _getNewId () {
         return Date.now()
+    }
+
+    async updateTodo (todo) {
+        this._throwsIfNotTodoStructure(todo)
+
+        await this._persistencyService.updateTodo(todo)
+
+        const updateIndex = this._allTodos.map(t => t.id).indexOf(todo.id)
+        this._allTodos.splice(updateIndex, 1, todo)
+
+        this._renderAllTodos()
     }
 }
 

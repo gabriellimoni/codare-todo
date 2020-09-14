@@ -44,8 +44,17 @@ h1 {
     transition: .2s all;
     border-radius: inherit;
     border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
 }
 #TodoList > li:hover {
     background-color: #fafafa;
     transform: scale(1.05);
+}
+#TodoList > li > button {
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(255, 117, 117);
 }
