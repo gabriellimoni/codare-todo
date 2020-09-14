@@ -12,6 +12,7 @@ export default class Main {
     _persistencyType = ''
     _persistencyService = null
     _app = null
+    _inputHandler = null
 
     constructor (persistencyType='localstorage') {
         if (!availablesPersistencyTypes.includes(persistencyType))
@@ -26,8 +27,8 @@ export default class Main {
         this._app = new TodoApp('TodoList', this._persistencyService)
         await this._app.initializeTodoApp()
         
-        const inputHandler = new InputHandler('TodoInput', this._app)
-        inputHandler.initializeInputHandler()
+        this._inputHandler = new InputHandler('TodoInput', this._app)
+        this._inputHandler.initializeInputHandler()
     }
 
     _setPersistencyService () {
